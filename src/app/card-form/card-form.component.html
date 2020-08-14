@@ -1,0 +1,153 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="cardForm">
+      <mat-form-field style="width: 46vw;" appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput class="form-control" formControlName="name" />
+      </mat-form-field>
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <mat-error *ngIf="name.errors.required">
+          Name is required.
+        </mat-error>
+        <mat-error *ngIf="name.errors.minlength">
+          Value you entered is
+          {{ name.errors.minlength.actualLength }} characters long. Name must be
+          at least {{ name.errors.minlength.requiredLength }} characters long.
+        </mat-error>
+        <mat-error *ngIf="name.errors.maxlength" class="help is-danger">
+          Value you entered is
+          {{ name.errors.maxlength.actualLength }} characters long,but it must
+          be {{ name.errors.maxlength.requiredLength }}
+        </mat-error>
+        <mat-error *ngIf="name.errors.pattern">
+          Invalid format
+        </mat-error>
+      </div>
+
+      <BR />
+      <mat-form-field style="width: 46vw;" appearance="fill">
+        <mat-label>Card Number</mat-label>
+        <input matInput class="form-control" formControlName="cardNumber" />
+      </mat-form-field>
+      <div
+        *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)"
+      >
+        <mat-error *ngIf="cardNumber.errors.required">
+          Card Number is required.
+        </mat-error>
+        <mat-error *ngIf="cardNumber.errors.minlength">
+          Value you entered is
+          {{ cardNumber.errors.minlength.actualLength }} characters long. Value
+          must be at least
+          {{ cardNumber.errors.minlength.requiredLength }} characters long.
+        </mat-error>
+        <mat-error *ngIf="cardNumber.errors.maxlength" class="help is-danger">
+          Value you entered is
+          {{ cardNumber.errors.maxlength.actualLength }} characters long,but it
+          must be {{ cardNumber.errors.maxlength.requiredLength }}
+        </mat-error>
+        <mat-error *ngIf="cardNumber.errors.pattern">
+          Invalid format
+        </mat-error>
+      </div>
+      <BR />
+      <table>
+        <tr>
+          <td>
+            <mat-form-field style="width: 23vw;" appearance="fill">
+              <mat-label>Expiration Date (MM/YY)</mat-label>
+              <input
+                matInput
+                class="form-control"
+                formControlName="expirationDate"
+              />
+            </mat-form-field>
+
+            <div
+              *ngIf="
+                expirationDate.invalid &&
+                (expirationDate.dirty || expirationDate.touched)
+              "
+            >
+              <mat-error *ngIf="expirationDate.errors.required">
+                Expiration Date is required.
+              </mat-error>
+              <mat-error *ngIf="expirationDate.errors.minlength">
+                Value you entered is
+                {{ expirationDate.errors.minlength.actualLength }} characters
+                long. Value must be at least
+                {{ expirationDate.errors.minlength.requiredLength }} characters
+                long.
+              </mat-error>
+              <mat-error
+                *ngIf="expirationDate.errors.maxlength"
+                class="help is-danger"
+              >
+                Value you entered is
+                {{ expirationDate.errors.maxlength.actualLength }} characters
+                long,but it must be
+                {{ expirationDate.errors.maxlength.requiredLength }}
+              </mat-error>
+              <mat-error *ngIf="expirationDate.errors.pattern">
+                Invalid format
+              </mat-error>
+            </div>
+          </td>
+          <td>
+            <mat-form-field style="width: 23vw;" appearance="fill">
+              <mat-label>Security code</mat-label>
+              <input
+                matInput
+                class="form-control"
+                formControlName="securityCode"
+              />
+            </mat-form-field>
+
+            <div
+              *ngIf="
+                securityCode.invalid &&
+                (securityCode.dirty || securityCode.touched)
+              "
+            >
+              <mat-error *ngIf="securityCode.errors.required">
+                Security Code is required.
+              </mat-error>
+              <mat-error *ngIf="securityCode.errors.minlength">
+                Value you entered is
+                {{ securityCode.errors.minlength.actualLength }} characters
+                long. Value must be at least
+                {{ securityCode.errors.minlength.requiredLength }} characters
+                long.
+              </mat-error>
+              <mat-error
+                *ngIf="securityCode.errors.maxlength"
+                class="help is-danger"
+              >
+                Value you entered is
+                {{ securityCode.errors.maxlength.actualLength }} characters
+                long,but it must be
+                {{ securityCode.errors.maxlength.requiredLength }}
+              </mat-error>
+              <mat-error *ngIf="securityCode.errors.pattern">
+                Invalid format
+              </mat-error>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!cardForm.valid"
+        (click)="onFormSubmit()"
+      >
+        Submit
+      </button>
+      &nbsp;&nbsp;
+      <button mat-raised-button color="accent" (click)="onFormReset()">
+        Reset
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
